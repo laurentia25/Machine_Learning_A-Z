@@ -10,11 +10,10 @@ import pandas as pd
 dataset = pd.read_csv('Data.csv')
 X = dataset.iloc[:, :-1].values # in order to take all row data -> [ : ,  all the columns except the last one -> :-1]
 y = dataset.iloc[:, -1].values # all th rows and the last column
-
+print(dataset)
 # Taking care of missing data
 # how to identify missing data
 missing_data = dataset.isnull().sum()
-print(missing_data)
 
 # missing data is replaced by average data of the column in which data is missing
 # np.nan -> blank cells
@@ -24,6 +23,12 @@ imputer.fit(X[:, 1:3])
 X[:, 1:3] = imputer.transform(X[:, 1:3])
 
 # Encoding categorical data
+
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+ct = ColumnTransformer(transformers = [('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+X = np.array(ct.fit_transform(X))
+print(X)
 # Encoding the Independent Variable
 # Encoding the Dependent Variable
 # Splitting the dataset into the Training set and Test set
