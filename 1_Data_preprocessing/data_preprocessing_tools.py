@@ -28,8 +28,13 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 ct = ColumnTransformer(transformers = [('encoder', OneHotEncoder(), [0])], remainder='passthrough')
 X = np.array(ct.fit_transform(X))
-print(X)
+
 # Encoding the Independent Variable
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+y = le.fit_transform(y)
+
 # Encoding the Dependent Variable
 # Splitting the dataset into the Training set and Test set
 # Feature Scaling
