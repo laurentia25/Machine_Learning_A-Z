@@ -12,6 +12,9 @@ X = dataset.iloc[:, :-1].values # in order to take all row data -> [ : ,  all th
 y = dataset.iloc[:, -1].values # all th rows and the last column
 
 # Taking care of missing data
+# how to identify missing data
+missing_data = dataset.isnull().sum()
+print(missing_data)
 
 # missing data is replaced by average data of the column in which data is missing
 # np.nan -> blank cells
